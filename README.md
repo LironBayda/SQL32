@@ -14,63 +14,7 @@ Answer to the theoretical question
 
 write in progresql
 
-CREATE TABLE "Customer" (
-	"ID" SERIAL PRIMARY KEY   ,
-	"NAME" TEXT NOT NULL,
-	"ADDRESS" TEXT NOT NULL,
-	"AGE" INT NOT NULL
-);
 
-
-CREATE TABLE "Products" (
-	"ID" SERIAL PRIMARY KEY ,
-	"NAME" TEXT NOT NULL,
-	"PRICE"	INTEGER NOT NULL,
-	"CATEGORY" TEXT  NOT NULL,
-	"VENDOR" TEXT  NOT NULL
-);
-
-CREATE TABLE "ORDERS" (
-	PRODUCT_ID INTEGER NOT NULL,
-	CUSTOMER_ID INTEGER NOT NULL,
-	PRIMARY KEY (PRODUCT_ID, CUSTOMER_ID),
-	FOREIGN KEY (PRODUCT_ID) REFERENCES "Products"("ID"),
-	FOREIGN KEY (CUSTOMER_ID) REFERENCES "Customer"("ID")
-	);
-
-INSERT INTO "Customer" ("NAME", "ADDRESS", "AGE") VALUES ('avi','a street',48);
-INSERT INTO "Customer" ("NAME", "ADDRESS", "AGE") VALUES ('aviva','b street',58);
-INSERT INTO "Customer" ("NAME", "ADDRESS", "AGE") VALUES ('dana','c street',68);
-INSERT INTO "Customer" ("NAME", "ADDRESS", "AGE") VALUES ('ben','d street',44);
-INSERT INTO "Customer" ("NAME", "ADDRESS", "AGE") VALUES ('dan','e street',41);
-INSERT INTO "Customer" ("NAME", "ADDRESS", "AGE") VALUES ('danny','f street',20);
-
-INSERT INTO "Products" ("NAME", "PRICE", "CATEGORY","VENDOR") VALUES ('a',345,'food','fad');
-INSERT INTO "Products" ("NAME", "PRICE", "CATEGORY","VENDOR") VALUES ('b',4,'food','fad');
-INSERT INTO "Products" ("NAME", "PRICE", "CATEGORY","VENDOR") VALUES ('c',55,'food','sony');
-INSERT INTO "Products" ("NAME", "PRICE", "CATEGORY","VENDOR") VALUES ('d',345875,'food','sony');
-INSERT INTO "Products" ("NAME", "PRICE", "CATEGORY","VENDOR") VALUES ('e',45,'home','sony');
-INSERT INTO "Products" ("NAME", "PRICE", "CATEGORY","VENDOR") VALUES ('f',654,'home','batili');
-INSERT INTO "Products" ("NAME", "PRICE", "CATEGORY","VENDOR") VALUES ('g',12,'home','batili');
-INSERT INTO "Products" ("NAME", "PRICE", "CATEGORY","VENDOR") VALUES ('h',34,'home','batili');
-INSERT INTO "Products" ("NAME", "PRICE", "CATEGORY","VENDOR") VALUES ('j',567,'home','fad');
-
-
-INSERT INTO "ORDERS" values (1,2);
-INSERT INTO "ORDERS" values (1,3);
-INSERT INTO "ORDERS" values (1,1);
-INSERT INTO "ORDERS" values (1,4);
-INSERT INTO "ORDERS" values (2,2);
-INSERT INTO "ORDERS" values (4,2);
-INSERT INTO "ORDERS" values (4,1);
-INSERT INTO "ORDERS" values (4,3);
-INSERT INTO "ORDERS" values (5,1);
-INSERT INTO "ORDERS" values (5,2);
-INSERT INTO "ORDERS" values (5,3);
-INSERT INTO "ORDERS" values (5,4);
-INSERT INTO "ORDERS" values (6,3);
-INSERT INTO "ORDERS" values (6,2);
-INSERT INTO "ORDERS" values (7,2);
 
 /* 1 */
 select  CUSTOMER_ID, C."AGE",C."NAME",c."ADDRESS",
@@ -195,3 +139,62 @@ select p."ID",p."NAME",p."PRICE",p."VENDOR", o.PRODUCT_ID from  "Products" p
 left join "ORDERS" O on p."ID" = O.PRODUCT_ID
 group by p."ID",p."NAME",p."PRICE",p."VENDOR", o.PRODUCT_ID
 having O.PRODUCT_ID is null
+
+/* code to create the tables amd insert data*/
+CREATE TABLE "Customer" (
+	"ID" SERIAL PRIMARY KEY   ,
+	"NAME" TEXT NOT NULL,
+	"ADDRESS" TEXT NOT NULL,
+	"AGE" INT NOT NULL
+);
+
+
+CREATE TABLE "Products" (
+	"ID" SERIAL PRIMARY KEY ,
+	"NAME" TEXT NOT NULL,
+	"PRICE"	INTEGER NOT NULL,
+	"CATEGORY" TEXT  NOT NULL,
+	"VENDOR" TEXT  NOT NULL
+);
+
+CREATE TABLE "ORDERS" (
+	PRODUCT_ID INTEGER NOT NULL,
+	CUSTOMER_ID INTEGER NOT NULL,
+	PRIMARY KEY (PRODUCT_ID, CUSTOMER_ID),
+	FOREIGN KEY (PRODUCT_ID) REFERENCES "Products"("ID"),
+	FOREIGN KEY (CUSTOMER_ID) REFERENCES "Customer"("ID")
+	);
+
+INSERT INTO "Customer" ("NAME", "ADDRESS", "AGE") VALUES ('avi','a street',48);
+INSERT INTO "Customer" ("NAME", "ADDRESS", "AGE") VALUES ('aviva','b street',58);
+INSERT INTO "Customer" ("NAME", "ADDRESS", "AGE") VALUES ('dana','c street',68);
+INSERT INTO "Customer" ("NAME", "ADDRESS", "AGE") VALUES ('ben','d street',44);
+INSERT INTO "Customer" ("NAME", "ADDRESS", "AGE") VALUES ('dan','e street',41);
+INSERT INTO "Customer" ("NAME", "ADDRESS", "AGE") VALUES ('danny','f street',20);
+
+INSERT INTO "Products" ("NAME", "PRICE", "CATEGORY","VENDOR") VALUES ('a',345,'food','fad');
+INSERT INTO "Products" ("NAME", "PRICE", "CATEGORY","VENDOR") VALUES ('b',4,'food','fad');
+INSERT INTO "Products" ("NAME", "PRICE", "CATEGORY","VENDOR") VALUES ('c',55,'food','sony');
+INSERT INTO "Products" ("NAME", "PRICE", "CATEGORY","VENDOR") VALUES ('d',345875,'food','sony');
+INSERT INTO "Products" ("NAME", "PRICE", "CATEGORY","VENDOR") VALUES ('e',45,'home','sony');
+INSERT INTO "Products" ("NAME", "PRICE", "CATEGORY","VENDOR") VALUES ('f',654,'home','batili');
+INSERT INTO "Products" ("NAME", "PRICE", "CATEGORY","VENDOR") VALUES ('g',12,'home','batili');
+INSERT INTO "Products" ("NAME", "PRICE", "CATEGORY","VENDOR") VALUES ('h',34,'home','batili');
+INSERT INTO "Products" ("NAME", "PRICE", "CATEGORY","VENDOR") VALUES ('j',567,'home','fad');
+
+
+INSERT INTO "ORDERS" values (1,2);
+INSERT INTO "ORDERS" values (1,3);
+INSERT INTO "ORDERS" values (1,1);
+INSERT INTO "ORDERS" values (1,4);
+INSERT INTO "ORDERS" values (2,2);
+INSERT INTO "ORDERS" values (4,2);
+INSERT INTO "ORDERS" values (4,1);
+INSERT INTO "ORDERS" values (4,3);
+INSERT INTO "ORDERS" values (5,1);
+INSERT INTO "ORDERS" values (5,2);
+INSERT INTO "ORDERS" values (5,3);
+INSERT INTO "ORDERS" values (5,4);
+INSERT INTO "ORDERS" values (6,3);
+INSERT INTO "ORDERS" values (6,2);
+INSERT INTO "ORDERS" values (7,2);

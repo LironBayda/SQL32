@@ -12,7 +12,7 @@ Answer to the theoretical question
 
 
 
-write in progresql
+write in postgresql
 
 
 
